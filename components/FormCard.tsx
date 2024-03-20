@@ -12,18 +12,25 @@ export default function FormCard({ setCardData }: FormCardProps) {
   const yearRef = useRef<HTMLInputElement>(null);
   const cvcRef = useRef<HTMLInputElement>(null);
 
-   function changeHandler(e: ChangeEvent<HTMLFormElement>) {
-    setCardData({
-      name: nameRef.current!.value,
-      number: +numberRef.current!.value,
-      month: +monthRef.current!.value,
-      year: +yearRef.current!.value,
-      cvc: +cvcRef.current!.value,
-    });
-    }
+  // function changeHandler(e: ChangeEvent<HTMLFormElement>) {
+  //   setCardData({
+  //     name: nameRef.current!.value,
+  //     number: +numberRef.current!.value,
+  //     month: +monthRef.current!.value,
+  //     year: +yearRef.current!.value,
+  //     cvc: +cvcRef.current!.value,
+  //   });
+  // }
 
   function submitHandler(e: FormEvent) {
     e.preventDefault();
+
+    const inputRefs = [nameRef, numberRef, monthRef, yearRef, cvcRef];
+    const anyFieldEmpty = inputRefs.some((ref) => !ref.current!.value);
+    
+    if (anyFieldEmpty) {
+      return;
+    }
     setCardData({
       name: nameRef.current!.value,
       number: +numberRef.current!.value,
@@ -34,12 +41,10 @@ export default function FormCard({ setCardData }: FormCardProps) {
     console.log("its RUn");
   }
 
-
-
   return (
     <form
       onSubmit={submitHandler}
-      onChange={changeHandler}
+      // onChange={changeHandler}
       className="flex flex-col  p-6 pt-20  font-semibold font-mono space-y-8 md:p-40  md:w-3/5  md:mx-auto md:ml-20 "
     >
       <div className="flex flex-col space-y-2">
