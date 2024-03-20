@@ -1,35 +1,45 @@
 import { type CardState } from "@/pages";
-import { ChangeEvent, FormEvent, useEffect, useRef } from "react";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 
 type FormCardProps = {
   setCardData: (datas: CardState) => void;
 };
 
 export default function FormCard({ setCardData }: FormCardProps) {
+
+  const [errorState,setErrorState] = useState<boolean>(false)
+
+
   const nameRef = useRef<HTMLInputElement>(null);
   const numberRef = useRef<HTMLInputElement>(null);
   const monthRef = useRef<HTMLInputElement>(null);
   const yearRef = useRef<HTMLInputElement>(null);
   const cvcRef = useRef<HTMLInputElement>(null);
 
-  // function changeHandler(e: ChangeEvent<HTMLFormElement>) {
-  //   setCardData({
-  //     name: nameRef.current!.value,
-  //     number: +numberRef.current!.value,
-  //     month: +monthRef.current!.value,
-  //     year: +yearRef.current!.value,
-  //     cvc: +cvcRef.current!.value,
-  //   });
-  // }
+  const nameValue = nameRef.current?.value;
+  const numberValue = numberRef.current?.value;
+  const monthValue = monthRef.current?.value;
+  const yearValue = yearRef.current?.value;
+  const cvcValue = cvcRef.current?.value;
+
+  function changeHandler(e: ChangeEvent<HTMLFormElement>) {
+    setCardData({
+      name: nameRef.current!.value,
+      number: +numberRef.current!.value,
+      month: +monthRef.current!.value,
+      year: +yearRef.current!.value,
+      cvc: +cvcRef.current!.value,
+    });
+  }
 
   function submitHandler(e: FormEvent) {
     e.preventDefault();
 
     const inputRefs = [nameRef, numberRef, monthRef, yearRef, cvcRef];
     const anyFieldEmpty = inputRefs.some((ref) => !ref.current!.value);
-    
+
     if (anyFieldEmpty) {
-      return;
+      return setErrorState((prev)=> !prev)
     }
     setCardData({
       name: nameRef.current!.value,
@@ -38,13 +48,14 @@ export default function FormCard({ setCardData }: FormCardProps) {
       year: +yearRef.current!.value,
       cvc: +cvcRef.current!.value,
     });
-    console.log("its RUn");
   }
 
   return (
-    <form
+   <>
+
+   <form
       onSubmit={submitHandler}
-      // onChange={changeHandler}
+      onChange={changeHandler}
       className="flex flex-col  p-6 pt-20  font-semibold font-mono space-y-8 md:p-40  md:w-3/5  md:mx-auto md:ml-20 "
     >
       <div className="flex flex-col space-y-2">
@@ -57,7 +68,7 @@ export default function FormCard({ setCardData }: FormCardProps) {
           id="name"
           name="name"
           placeholder="e.g. Jane Appleseed"
-          className="border-2 rounded-lg px-4 py-2 w-full focus:outline-none"
+          className={`${errorState && !nameValue ? 'border-red-500' : ''} border-2 rounded-lg px-4 py-2 w-full focus:outline-none`}
         />
       </div>
       <div className="flex flex-col space-y-2">
@@ -70,7 +81,7 @@ export default function FormCard({ setCardData }: FormCardProps) {
           id="number"
           name="number"
           placeholder="e.g. 1234 5678 9123 0000"
-          className="border-2 rounded-lg px-4 w-full py-2 focus:outline-none"
+          className={`${errorState && !numberValue ? 'border-red-500' : ''} border-2 rounded-lg px-4 py-2 w-full focus:outline-none`}
         />
       </div>
       <div className="flex space-x-6">
@@ -81,14 +92,15 @@ export default function FormCard({ setCardData }: FormCardProps) {
           <div className="flex space-x-3 ">
             <input
               ref={monthRef}
-              className="border-2 rounded-lg px-4 py-2 w-20 focus:outline-none"
+              className={`${errorState && !monthValue ? 'border-red-500' : ''} border-2 rounded-lg px-4 py-2 w-20 focus:outline-none`}
               type="number"
               placeholder="MM"
             />
+
             <input
               ref={yearRef}
               type="number"
-              className="border-2 rounded-lg w-20 px-4 py-2 focus:outline-none"
+              className={`${errorState && !yearValue ? 'border-red-500' : ''} border-2 rounded-lg px-4 py-2 w-20 focus:outline-none`}
               placeholder="YY"
             />
           </div>
@@ -99,7 +111,7 @@ export default function FormCard({ setCardData }: FormCardProps) {
           </label>
           <input
             ref={cvcRef}
-            className="border-2 rounded-lg px-4 py-2 w-full  focus:outline-none"
+            className={`${errorState && !cvcValue ? 'border-red-500' : ''} border-2 rounded-lg px-4 py-2 w-full focus:outline-none`}
             type="number"
             id="cvc"
             name="cvc"
@@ -109,5 +121,7 @@ export default function FormCard({ setCardData }: FormCardProps) {
       </div>
       <button className="btn">Confirm</button>
     </form>
+   </>
+    
   );
 }
