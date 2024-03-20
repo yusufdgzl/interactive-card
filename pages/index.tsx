@@ -52,7 +52,13 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <FormCard/>
+        {/* <FormCard/> */}
+        <div>
+          <img src="" alt="" />
+          <h2>THANK YOU!</h2>
+          <p>We've added your card details</p>
+          <button className="btn">Contunie</button>
+        </div>
       </div>
     </div>
   );

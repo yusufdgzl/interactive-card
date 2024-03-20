@@ -62,7 +62,7 @@ export default function FormCard(){
               />
             </div>
           </div>
-          <button className="bg-sky-950 py-3 text-white rounded-xl text-md font-sans border-b-4 border-sky-800  hover:border-b-0 hover:border-t-4 hover:border-t-sky-950 shadow-md hover:shadow-sky-600 ">
+          <button className="btn">
             Confirm
           </button>
         </form>
