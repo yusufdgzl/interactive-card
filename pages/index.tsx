@@ -1,6 +1,23 @@
 import FormCard from "@/components/FormCard";
+import { useState } from "react";
+
+
+
+export type CardState = {
+  name: string;
+  number: number;
+  month:number;
+  year:number;
+  cvc:number;
+}
 
 export default function HomePage() {
+
+  const [cardData, setCardData] = useState<CardState>();
+  
+
+
+
   return (
     <div className="flex flex-col justify-center items-center p-6 bg-slate-300 min-h-screen ">
       <div className="flex flex-col w-full bg-white md:flex-row max-w-[1200px] ">
@@ -23,7 +40,7 @@ export default function HomePage() {
                 alt=""
               />
               <p className="absolute z-10 text-white tracking-wider right-10 top-20 md:top-[86px]  ">
-                000
+                {cardData?.cvc}
               </p>
             </div>
           </div>
@@ -41,19 +58,18 @@ export default function HomePage() {
                 </div>
                 <div className="flex flex-col space-y-2 ">
                   <p className="font-serif text-2xl tracking-wider ">
-                    0000 0000 0000 0000
+                    {cardData?.number}
                   </p>
                   <div className="flex justify-between">
-                    <p>Jane Appleseed</p>
-                    <p>00/00</p>
+                    <p>{cardData?.name.toUpperCase()}</p>
+                    <p>{cardData?.month}/{cardData?.year}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* <FormCard/> */}
-        
+         <FormCard setCardData= {setCardData} /> 
       </div>
     </div>
   );
