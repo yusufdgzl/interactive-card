@@ -1,8 +1,9 @@
 
 
 export default function FormCard(){
+    
     return(
-        <form className="flex flex-col w-full p-6 pt-20  font-semibold font-mono space-y-8 md:p-40  ">
+        <form className="flex flex-col  p-6 pt-20  font-semibold font-mono space-y-8 md:p-40  md:w-3/5  md:mx-auto md:ml-20 ">
           <div className="flex flex-col space-y-2">
             <label className="text-purple-900 tracking-wider" htmlFor="name">
               CARDHOLDER NAME
