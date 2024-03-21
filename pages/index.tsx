@@ -2,23 +2,21 @@ import ComplateState from "@/components/ComplateState";
 import FormCard from "@/components/FormCard";
 import { useState } from "react";
 
-
-
 export type CardState = {
   name: string;
-  number: string ;
-  month:number;
-  year:number;
-  cvc:number;
-}
+  number: string;
+  month: number;
+  year: number;
+  cvc: number;
+};
 
 export default function HomePage() {
-
   const [cardData, setCardData] = useState<CardState>();
-  const [savedSuccesfully,setSavedSuccesfully]= useState<boolean>(false);
-  
+  const [cards, setCards] = useState<CardState[]>([]);
 
+  console.log(cards)
 
+  const [savedSuccesfully, setSavedSuccesfully] = useState<boolean>(false);
 
   return (
     <div className="flex flex-col justify-center items-center p-6 bg-slate-300 min-h-screen ">
@@ -64,14 +62,27 @@ export default function HomePage() {
                   </p>
                   <div className="flex justify-between">
                     <p>{cardData?.name.toUpperCase()}</p>
-                    <p>{cardData?.month}/{cardData?.year}</p>
+                    <p>
+                      {cardData?.month}/{cardData?.year}
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {savedSuccesfully ? <ComplateState setCardData= {setCardData} setSavedSuccesfully = {setSavedSuccesfully}/> : <FormCard setSavedSuccesfully={setSavedSuccesfully} setCardData= {setCardData} /> }
+        {savedSuccesfully ? (
+          <ComplateState
+            setCardData={setCardData}
+            setSavedSuccesfully={setSavedSuccesfully}
+          />
+        ) : (
+          <FormCard
+            setSavedSuccesfully={setSavedSuccesfully}
+            setCardData={setCardData}
+            setCards={setCards}
+          />
+        )}
       </div>
     </div>
   );

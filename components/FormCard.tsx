@@ -6,9 +6,11 @@ import { AlertCircle } from "lucide-react";
 type FormCardProps = {
   setCardData: (datas: CardState) => void;
   setSavedSuccesfully: (data: boolean) => void;
+  setCards: (data: (prev: CardState[]) => CardState[]) => void;
 };
 
 export default function FormCard({
+  setCards,
   setCardData,
   setSavedSuccesfully,
 }: FormCardProps) {
@@ -57,13 +59,18 @@ export default function FormCard({
       }, 3000);
       return;
     }
-    setCardData({
-      name: nameRef.current!.value,
-      number: numberRef.current!.value.replace(/(\d{4})/g, '$1 '),
-      month: +monthRef.current!.value,
-      year: +yearRef.current!.value,
-      cvc: +cvcRef.current!.value,
-    });
+
+    
+    setCards((prev) => [
+      ...prev,
+      {
+        name: nameRef.current!.value,
+        number: numberRef.current!.value.replace(/(\d{4})/g, '$1 '),
+        month: +monthRef.current!.value,
+        year: +yearRef.current!.value,
+        cvc: +cvcRef.current!.value,
+      }
+    ]);
 
     setSavedSuccesfully(true);
   };
