@@ -1,7 +1,12 @@
+import { CardState } from "@/pages"
 
-function CardItem() {
+
+
+
+function CardItem({name,number,month,year}:CardState) {
+
     return(
-        <div className="flex relative ">
+        <div className="flex relative cursor-pointer ">
           <img
             className=" w-[270px] md:w-[300px] "
             src="images/bg-card-front.png"
@@ -13,10 +18,10 @@ function CardItem() {
               <div className="w-4 h-4 rounded-full ring-1 ring-yellow-500"></div>
             </div>
             <div className="flex flex-col space-y-2 ">
-              <p className=" text-2xl tracking-wider ">121321313213</p>
+              <p className=" text-xl tracking-wider ">{number}</p>
               <div className="flex justify-between">
-                <p>Yusuf Doğangüzel</p>
-                <p>12/12</p>
+                <p>{name}</p>
+                <p>{month}/{year}</p>
               </div>
             </div>
           </div>
