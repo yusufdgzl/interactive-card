@@ -43,7 +43,7 @@ export default function FormCard({
     const inputRefs = [nameRef, numberRef, monthRef, yearRef, cvcRef];
     const anyFieldEmpty = inputRefs.some((ref) => !ref.current!.value);
 
-    if (anyFieldEmpty) {
+    if (anyFieldEmpty || numberValue!.length !== 16 || yearValue!.length !== 2 || monthValue!.length !== 2 || cvcValue!.length !== 3) {
       setErrorState(true);
       setErrorAlert(true);
       setTimeout(() => {
@@ -67,10 +67,10 @@ export default function FormCard({
       <form
         onSubmit={submitHandler}
         onChange={changeHandler}
-        className="flex flex-col relative  p-6 pt-32  font-semibold font-mono space-y-8 md:p-40  md:w-3/5  md:mx-auto md:ml-20 "
+        className="flex flex-col relative  p-6 pt-32  font-semibold font-mono space-y-8  md:p-40  md:w-3/5  md:mx-auto md:ml-20 "
       >
         {errorAlert && (
-          <div className="absolute top-14 w-4/5 md:right-0 md:w-[370px] bg-gray-200  ">
+          <div className="absolute  top-14 w-4/5 md:right-0 md:w-[370px] bg-gray-200  ">
             <Alert variant={"destructive"}>
               <AlertCircle className="h-4 w-4" />
               <AlertTitle className="font-bold">Error!</AlertTitle>
@@ -81,7 +81,7 @@ export default function FormCard({
           </div>
         )}
 
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2  ">
           <label className="text-purple-900 tracking-wider" htmlFor="name">
             CARDHOLDER NAME
           </label>
