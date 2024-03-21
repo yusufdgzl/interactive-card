@@ -1,10 +1,16 @@
 import { CardState } from "@/pages"
 
+type CardItemProps = CardState & {
+    setCards: (data:(prev:CardState[]) => CardState[])=> void;
+}
 
 
+function CardItem({name,number,month,year,setCards}:CardItemProps) {
 
-function CardItem({name,number,month,year}:CardState) {
-
+    function deleteCardHandler(name:string){
+        setCards((prev)=> prev.filter((cards)=> cards.name !== name))
+    }
+  
     return(
         <div className="flex relative  ">
           <img
@@ -25,7 +31,7 @@ function CardItem({name,number,month,year}:CardState) {
               </div>
             </div>
           </div>
-         <button className=" absolute right-2  top-2 z-20  hover:translate-y-0">
+         <button onClick={deleteCardHandler.bind(null,name)} className=" absolute right-2  top-2 z-20  hover:translate-y-0">
             <img src="/images/icon-trash.svg" className=" h-6 hover:translate-y-1 7 transition-transform duration-500" alt="" />
          </button>
         </div>

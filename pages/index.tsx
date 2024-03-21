@@ -20,7 +20,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col justify-center items-center p-6 bg-slate-300 min-h-screen ">
       <div className="flex relative flex-col w-full bg-white md:flex-row max-w-[1200px] ">
-        <Cards cards={cards} />
+        <Cards cards={cards} setCards={setCards} />
 
         <div className="relative ">
           <img
@@ -76,6 +76,7 @@ export default function HomePage() {
           <ComplateState
             setCardData={setCardData}
             setSavedSuccesfully={setSavedSuccesfully}
+            
           />
         ) : (
           <FormCard
