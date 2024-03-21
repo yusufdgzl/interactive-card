@@ -59,14 +59,16 @@ export default function FormCard({
     }
     setCardData({
       name: nameRef.current!.value,
-      number: numberRef.current!.value,
+      number: numberRef.current!.value.replace(/(\d{4})/g, '$1 '),
       month: +monthRef.current!.value,
       year: +yearRef.current!.value,
       cvc: +cvcRef.current!.value,
     });
 
     setSavedSuccesfully(true);
-  }
+  };
+
+
 
   return (
     <>
@@ -166,7 +168,7 @@ export default function FormCard({
             />
           </div>
         </div>
-        <button className="btn">Confirm</button>
+        <button  className="btn">Confirm</button>
       </form>
     </>
   );

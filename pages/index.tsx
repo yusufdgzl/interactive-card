@@ -71,7 +71,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        {savedSuccesfully ? <ComplateState/> : <FormCard setSavedSuccesfully={setSavedSuccesfully} setCardData= {setCardData} /> }
+        {savedSuccesfully ? <ComplateState setCardData= {setCardData} setSavedSuccesfully = {setSavedSuccesfully}/> : <FormCard setSavedSuccesfully={setSavedSuccesfully} setCardData= {setCardData} /> }
       </div>
     </div>
   );
