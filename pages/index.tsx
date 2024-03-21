@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export type CardState = {
   name: string;
-  number: number;
+  number: string ;
   month:number;
   year:number;
   cvc:number;
@@ -60,7 +60,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex flex-col space-y-2 ">
                   <p className=" text-2xl tracking-wider ">
-                    {cardData?.number}
+                    {cardData?.number.valueOf()}
                   </p>
                   <div className="flex justify-between">
                     <p>{cardData?.name.toUpperCase()}</p>

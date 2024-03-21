@@ -30,7 +30,7 @@ export default function FormCard({
   function changeHandler() {
     setCardData({
       name: nameRef.current!.value,
-      number: +numberRef.current!.value,
+      number: numberRef.current!.value.replace(/(\d{4})/g, '$1 '), // Important 'düzenli ifadeleri araştır'
       month: +monthRef.current!.value,
       year: +yearRef.current!.value,
       cvc: +cvcRef.current!.value,
@@ -59,7 +59,7 @@ export default function FormCard({
     }
     setCardData({
       name: nameRef.current!.value,
-      number: +numberRef.current!.value,
+      number: numberRef.current!.value,
       month: +monthRef.current!.value,
       year: +yearRef.current!.value,
       cvc: +cvcRef.current!.value,
@@ -76,12 +76,12 @@ export default function FormCard({
         className="flex flex-col relative  p-6 pt-32  font-semibold font-mono gap-8 space- md:p-40  md:w-3/5  md:mx-auto md:ml-20 "
       >
         {errorAlert && (
-          <div className="absolute  top-14 w-4/5  md:right-0 md:w-[370px] bg-gray-200  ">
+          <div className="absolute  top-14 w-4/5  md:right-0 md:w-[370px] bg-gray-200 animate-pulse duration-1000  ">
             <Alert variant={"destructive"}>
               <AlertCircle className="h-4 w-4" />
               <AlertTitle className="font-bold">Error!</AlertTitle>
               <AlertDescription>
-                Information is missing or incorrect!
+                Informations is missing or incorrect!
               </AlertDescription>
             </Alert>
           </div>
