@@ -18,6 +18,11 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        'hero-pattern': "url('/img/hero-pattern.svg')",
+        'footer-texture': "url('/img/footer-texture.png')",
+        'bg-image': "bg-[url('/images/bg-main-desktop.svg')]"
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

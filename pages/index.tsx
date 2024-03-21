@@ -1,3 +1,4 @@
+import Cards from "@/components/Cards";
 import ComplateState from "@/components/ComplateState";
 import FormCard from "@/components/FormCard";
 import { useState } from "react";
@@ -14,13 +15,14 @@ export default function HomePage() {
   const [cardData, setCardData] = useState<CardState>();
   const [cards, setCards] = useState<CardState[]>([]);
 
-  console.log(cards)
-
   const [savedSuccesfully, setSavedSuccesfully] = useState<boolean>(false);
 
   return (
     <div className="flex flex-col justify-center items-center p-6 bg-slate-300 min-h-screen ">
-      <div className="flex flex-col w-full bg-white md:flex-row max-w-[1200px] ">
+      <div className="flex relative flex-col w-full bg-white md:flex-row max-w-[1200px] ">
+        
+        <Cards />
+
         <div className="relative ">
           <img
             className="hidden md:flex md:h-[700px] "
