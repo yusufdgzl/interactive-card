@@ -107,7 +107,7 @@ export default function FormCard({
             name="number"
             placeholder="e.g. 1234 5678 9123 0000"
             className={`${
-              errorState && !numberValue ? "shadow-red-400" : ""
+              errorState &&  numberValue!.length !== 16 ? "shadow-red-400" : ""
             } shadow-md  border-2 rounded-lg px-4 py-2 w-full focus:outline-none`}
           />
         </div>
@@ -123,7 +123,7 @@ export default function FormCard({
               <input
                 ref={monthRef}
                 className={`${
-                  errorState && !monthValue ? "shadow-red-400" : ""
+                  errorState &&  monthValue!.length !== 2 ? "shadow-red-400" : ""
                 } shadow-md border-2 rounded-lg px-4 py-2 w-20 focus:outline-none`}
                 type="number"
                 placeholder="MM"
@@ -133,7 +133,7 @@ export default function FormCard({
                 ref={yearRef}
                 type="number"
                 className={`${
-                  errorState && !yearValue ? "shadow-red-400" : ""
+                  errorState &&  yearValue!.length !== 2 ?  "shadow-red-400" : ""
                 } shadow-md border-2 rounded-lg px-4 py-2 w-20 focus:outline-none`}
                 placeholder="YY"
               />
@@ -146,7 +146,7 @@ export default function FormCard({
             <input
               ref={cvcRef}
               className={`${
-                errorState && !cvcValue ? "shadow-red-400" : ""
+                errorState &&  cvcValue!.length !== 3 ? "shadow-red-400" : ""
               } shadow-md border-2 appearance-none  rounded-lg px-4 py-2 w-full focus:outline-none`}
               type="number"
               id="cvc"
