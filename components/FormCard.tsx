@@ -1,6 +1,7 @@
 import { type CardState } from "@/pages";
 import { FormEvent, useRef, useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertCircle } from "lucide-react";
 
 type FormCardProps = {
   setCardData: (datas: CardState) => void;
@@ -12,6 +13,7 @@ export default function FormCard({
   setSavedSuccesfully,
 }: FormCardProps) {
   const [errorState, setErrorState] = useState<boolean>(false);
+  const [errorAlert,setErrorAlert] = useState<boolean>(false);
 
   const nameRef = useRef<HTMLInputElement>(null);
   const numberRef = useRef<HTMLInputElement>(null);
@@ -42,7 +44,12 @@ export default function FormCard({
     const anyFieldEmpty = inputRefs.some((ref) => !ref.current!.value);
 
     if (anyFieldEmpty) {
-      return setErrorState(true);
+      setErrorState(true);
+      setErrorAlert(true);
+      setTimeout(() => {
+        setErrorAlert(false);
+      }, 3000);
+      return;
     }
     setCardData({
       name: nameRef.current!.value,
@@ -62,14 +69,17 @@ export default function FormCard({
         onChange={changeHandler}
         className="flex flex-col relative  p-6 pt-32  font-semibold font-mono space-y-8 md:p-40  md:w-3/5  md:mx-auto md:ml-20 "
       >
-        <div className="absolute top-14 w-4/5 md:right-0 md:w-[370px] ">
-          <Alert variant={"destructive"}>
-            <AlertTitle>Error!</AlertTitle>
-            <AlertDescription>
-            Information is missing or incorrect!
-            </AlertDescription>
-          </Alert>
-        </div>
+        {errorAlert && (
+          <div className="absolute top-14 w-4/5 md:right-0 md:w-[370px] bg-gray-200  ">
+            <Alert variant={"destructive"}>
+              <AlertCircle className="h-4 w-4" />
+              <AlertTitle className="font-bold">Error!</AlertTitle>
+              <AlertDescription>
+                Information is missing or incorrect!
+              </AlertDescription>
+            </Alert>
+          </div>
+        )}
 
         <div className="flex flex-col space-y-2">
           <label className="text-purple-900 tracking-wider" htmlFor="name">
