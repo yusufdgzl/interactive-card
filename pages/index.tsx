@@ -1,3 +1,4 @@
+import ComplateState from "@/components/ComplateState";
 import FormCard from "@/components/FormCard";
 import { useState } from "react";
 
@@ -14,6 +15,7 @@ export type CardState = {
 export default function HomePage() {
 
   const [cardData, setCardData] = useState<CardState>();
+  const [savedSuccesfully,setSavedSuccesfully]= useState<boolean>(false);
   
 
 
@@ -57,7 +59,7 @@ export default function HomePage() {
                   <div className="w-4 h-4 rounded-full ring-1 ring-yellow-500"></div>
                 </div>
                 <div className="flex flex-col space-y-2 ">
-                  <p className="font-serif text-2xl tracking-wider ">
+                  <p className=" text-2xl tracking-wider ">
                     {cardData?.number}
                   </p>
                   <div className="flex justify-between">
@@ -69,7 +71,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-         <FormCard setCardData= {setCardData} /> 
+        {savedSuccesfully ? <ComplateState/> : <FormCard setSavedSuccesfully={setSavedSuccesfully} setCardData= {setCardData} /> }
       </div>
     </div>
   );
