@@ -25,12 +25,15 @@ export default function HomePage() {
   return (
     <div className="flex flex-col justify-center items-center p-6 bg-slate-300 min-h-screen ">
       <div className="flex relative flex-col w-full bg-white md:flex-row max-w-[1200px] ">
+
         <Cards cards={cards} setCards={setCards} openCardMenu={openCardMenu} />
-        <div onClick={cardMenuHandler} className={`${openCardMenu && 'open'} hamburger md:right-10 md:top-10 cursor-pointer `}>
+
+        <div onClick={cardMenuHandler} className={`${openCardMenu && 'open'} ${savedSuccesfully && 'animate-once-bounce'} hamburger md:right-10 md:top-10 cursor-pointer `}>
           <span className="item-1"></span>
           <span className="item-2"></span>
           <span className="item-3"></span>
         </div>
+
         <div className="relative ">
           <img
             className="hidden md:flex md:h-[700px] "
