@@ -20,8 +20,8 @@ function CardItem({name,number,month,year,setCards}:CardItemProps) {
           />
           <div className="flex flex-col absolute  z-10 p-6 md:px-10 w-full h-full text-white justify-between ">
             <div className="flex items-center space-x-5">
-              <div className="w-10 h-10 ring-1 rounded-full bg-white"></div>
-              <div className="w-4 h-4 rounded-full ring-1 ring-yellow-500"></div>
+              <div className="w-7 h-7 ring-1 rounded-full bg-white"></div>
+              <div className="w-3 h-3 rounded-full ring-1 ring-yellow-500"></div>
             </div>
             <div className="flex flex-col space-y-2 ">
               <p className=" text-xl tracking-wider ">{number}</p>

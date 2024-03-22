@@ -23,8 +23,8 @@ export default function HomePage() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center p-6 bg-slate-300 min-h-screen ">
-      <div className="flex relative flex-col w-full bg-white md:flex-row max-w-[1200px] ">
+    <div className="flex flex-col justify-center items-center p-6 bg-gradient-to-l to-purple-100 via-red-50 from-purple-100 min-h-screen ">
+      <div className="flex relative flex-col w-full bg-white md:flex-row max-w-[1200px] shadow-2xl ">
 
         <Cards cards={cards} setCards={setCards} openCardMenu={openCardMenu} />
 
