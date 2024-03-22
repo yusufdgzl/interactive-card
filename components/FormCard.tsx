@@ -85,7 +85,7 @@ export default function FormCard({
         className="flex flex-col relative  p-6 pt-32  font-semibold font-mono gap-8 space- md:p-40  md:w-3/5  md:mx-auto md:ml-20 "
       >
         {errorAlert && (
-          <div className="absolute  top-14 w-4/5  md:right-0 md:w-[370px] bg-gray-200 animate-pulse duration-1000  ">
+          <div className="absolute  top-14 w-4/5  md:right-0 md:top-20 md:w-[370px] bg-gray-200 animate-pulse duration-1000  ">
             <Alert variant={"destructive"}>
               <AlertCircle className="h-4 w-4" />
               <AlertTitle className="font-bold">Error!</AlertTitle>
